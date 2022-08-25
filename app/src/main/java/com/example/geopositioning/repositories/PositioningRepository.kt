@@ -10,6 +10,7 @@ import android.location.LocationManager
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import com.example.geopositioning.config.locationPermissionCode
+import com.example.geopositioning.config.trialMode
 import com.example.geopositioning.models.Position
 import org.koin.core.component.KoinComponent
 
@@ -27,14 +28,13 @@ class PositioningRepository: KoinComponent, LocationListener {
             ActivityCompat.requestPermissions(activity, arrayOf(Manifest.permission.ACCESS_FINE_LOCATION), locationPermissionCode)
         }
         locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 1000, 0f, this)
-        // Temporary to debug
+        // this helps to trigger location updates, but after more testing we could remove it
         locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 1000, 0f, this)
     }
 
     override fun onLocationChanged(location: Location) {
         val newPos = Position(location.latitude, location.longitude)
         position = newPos
-        println("Latitude: " + location.latitude + " , Longitude: " + location.longitude)
     }
 
 }

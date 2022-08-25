@@ -1,6 +1,7 @@
 package com.example.geopositioning.setup
 
 
+import com.example.geopositioning.repositories.PositioningRepository
 import com.example.geopositioning.viewmodels.MainPageViewModel
 import org.koin.core.module.Module
 import org.koin.dsl.module
@@ -12,9 +13,9 @@ val mainScreenInjectionModule = module {
 }
 
 private fun Module.repositories() {
-//    factory { PackageManagerRepository() }
+    factory { PositioningRepository() }
 }
 
 fun Module.viewModels() {
-    viewModel { MainPageViewModel() }
+    viewModel { MainPageViewModel(get()) }
 }

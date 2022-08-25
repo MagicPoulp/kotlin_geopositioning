@@ -14,6 +14,11 @@ import androidx.compose.ui.Modifier
 import com.example.geopositioning.models.Position
 import com.example.geopositioning.viewmodels.MainPageViewModel
 import org.koin.androidx.compose.getViewModel
+import java.math.RoundingMode
+import java.text.DecimalFormat
+import java.text.DecimalFormatSymbols
+import java.text.NumberFormat
+import java.util.*
 
 @Composable
 fun MainScreen(packageManager: PackageManager,
@@ -26,9 +31,11 @@ fun MainScreen(packageManager: PackageManager,
     position2?.let {
         position = it
     }
+    val format: NumberFormat = DecimalFormat("####.#####", DecimalFormatSymbols(Locale.ENGLISH))
+    format.roundingMode = RoundingMode.UP
     Column(verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally,
         modifier = Modifier.fillMaxSize()) {
-        Text(text = "Lat: ${position.latitude}, Lng: ${position.longitude}")
+        Text(text = "Lat: ${format.format(position.latitude)}, Lng: ${format.format(position.longitude)}")
     }
 }

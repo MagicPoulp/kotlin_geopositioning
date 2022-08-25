@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Geopositioning</string>
+    <string name="geokeo_apikey">9da1fbafc8827213e41262a09afc3427</string>
 </resources>

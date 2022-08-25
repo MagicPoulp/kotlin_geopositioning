@@ -36,7 +36,7 @@ android {
         compose true
     }
     composeOptions {
-        kotlinCompilerExtensionVersion compose_version
+        kotlinCompilerExtensionVersion compose_compiler_version
     }
     packagingOptions {
         resources {
@@ -47,12 +47,33 @@ android {
 
 dependencies {
 
-    implementation 'androidx.core:core-ktx:1.7.0'
+    // retrofit
+    implementation 'com.squareup.retrofit2:retrofit:2.9.0'
+    implementation("com.squareup.okhttp3:logging-interceptor:3.9.0")
+    // JSON
+    implementation 'com.squareup.retrofit2:converter-jackson:2.9.0'
+    implementation 'com.fasterxml.jackson.module:jackson-module-kotlin:2.13.3'
+    // coroutine
+    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.6.4'
+    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.4'
+
+    // android core
+    implementation 'androidx.core:core-ktx:1.8.0'
+
+    // compose
     implementation "androidx.compose.ui:ui:$compose_version"
     implementation "androidx.compose.material:material:$compose_version"
     implementation "androidx.compose.ui:ui-tooling-preview:$compose_version"
-    implementation 'androidx.lifecycle:lifecycle-runtime-ktx:2.3.1'
-    implementation 'androidx.activity:activity-compose:1.3.1'
+    implementation 'androidx.lifecycle:lifecycle-runtime-ktx:2.5.1'
+    implementation 'androidx.activity:activity-compose:1.5.1'
+    implementation "androidx.compose.runtime:runtime-livedata:$compose_version"
+
+    // injection
+    implementation "io.insert-koin:koin-androidx-compose:$koin_version"
+    //implementation "io.insert-koin:koin-core:$koin_version"
+    //testImplementation "io.insert-koin:koin-test:$koin_version"
+
+    // testing
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.3'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'

@@ -27,9 +27,14 @@ fun MainScreen(packageManager: PackageManager,
 ) {
     mainPageViewModel.initialize(activity)
     val position2 by mainPageViewModel.position.observeAsState()
+    val address2 by mainPageViewModel.address.observeAsState()
     var position = Position(0.0,0.0)
     position2?.let {
         position = it
+    }
+    var address = ""
+    address2?.let {
+        address = it
     }
     val format: NumberFormat = DecimalFormat("####.#####", DecimalFormatSymbols(Locale.ENGLISH))
     format.roundingMode = RoundingMode.UP
@@ -37,5 +42,6 @@ fun MainScreen(packageManager: PackageManager,
         horizontalAlignment = Alignment.CenterHorizontally,
         modifier = Modifier.fillMaxSize()) {
         Text(text = "Lat: ${format.format(position.latitude)}, Lng: ${format.format(position.longitude)}")
+        Text(text = address)
     }
 }

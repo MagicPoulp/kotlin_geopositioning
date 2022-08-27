@@ -49,9 +49,9 @@ class MainPageViewModel(
     }
 
     fun initialize(activity: Activity) {
-        observableExample.subscribe {
+        disposable.add(observableExample.subscribe {
             println("New location. Lat: " + it.latitude + ", Lng: " + it.longitude)
-        }
+        })
         positioningRepository.getLocation(activity)
         geokeoRepository.initialize(activity.resources.getString( R.string.geokeo_apikey))
         setupUiObservers(activity)
